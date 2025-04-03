@@ -1,0 +1,17 @@
+{
+  "name": "bouquet_verborum",
+  "version": "1.0.0",
+  "devDependencies": {
+    "autoprefixer": "^10.4.16",
+    "esbuild": "^0.25.2",
+    "phoenix": "file:../deps/phoenix",
+    "phoenix_html": "file:../deps/phoenix_html",
+    "phoenix_live_view": "file:../deps/phoenix_live_view",
+    "postcss": "^8.4.31",
+    "tailwindcss": "^3.3.3"
+  },
+  "scripts": {
+        "deploy": "tailwindcss --minify -i assets/css/app.css -o ../priv/static/assets/app.css && esbuild assets/js/app.js --bundle --minify --sourcemap --outfile=../priv/static/assets/app.js",
+        "watch": "tailwindcss --watch -i assets/css/app.css -o ../priv/static/assets/app.css & esbuild assets/js/app.js --bundle --sourcemap --outfile=../priv/static/assets/app.js --watch"
+    } 
+}

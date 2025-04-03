@@ -1,0 +1,228 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --text-primary: theme(colors.gray.900);
+    --text-secondary: theme(colors.gray.600);
+    --bg-primary: theme(colors.white);
+    --border-primary: theme(colors.gray.200);
+    --primary: theme(colors.indigo.600);
+    --highlight: theme(colors.yellow.200);
+    --input-bg: theme(colors.white);
+    --input-border: theme(colors.gray.300);
+    --input-text: theme(colors.gray.900);
+  }
+
+  .dark {
+    --text-primary: theme(colors.gray.100);
+    --text-secondary: theme(colors.gray.300);
+    --bg-primary: theme(colors.gray.900);
+    --border-primary: theme(colors.gray.700);
+    --primary: theme(colors.indigo.500);
+    --highlight: theme(colors.yellow.800);
+    --input-bg: theme(colors.gray.800);
+    --input-border: theme(colors.gray.600);
+    --input-text: theme(colors.gray.100);
+  }
+
+  html {
+    @apply text-[var(--text-primary)] bg-[var(--bg-primary)] transition-colors duration-300;
+  }
+
+  mark {
+    @apply bg-[var(--highlight)] text-current px-0.5 rounded;
+  }
+}
+
+@layer components {
+  /* Tabs */
+  .tabs {
+    @apply flex border-b border-[var(--border-primary)] mb-6;
+  }
+
+  .tab {
+    @apply px-6 py-3 font-medium text-[var(--text-secondary)] 
+           border-b-2 border-transparent transition-all
+           hover:text-[var(--primary)] hover:border-[var(--primary)];
+  }
+
+  .tab.active {
+    @apply text-[var(--primary)] border-[var(--primary)] font-semibold;
+  }
+
+  .tab-content {
+    @apply py-6;
+  }
+
+  /* Search Form */
+  .search-form {
+    @apply mb-8;
+  }
+
+  .search-form input {
+    @apply w-full px-4 py-3 border border-[var(--input-border)] 
+           rounded-lg bg-[var(--input-bg)] text-[var(--input-text)]
+           focus:outline-none focus:border-[var(--primary)] 
+           focus:ring-2 focus:ring-[var(--primary)/20] transition-all;
+  }
+
+  /* Navigation */
+  .horizontal-nav {
+    display: flex;
+    gap: 1.5rem;
+    background: #f3f4f6;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .dark .horizontal-nav {
+    background: #374151;
+  }
+
+  .nav-link {
+    color: #4b5563;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .dark .nav-link {
+    color: #e5e7eb;
+  }
+
+  .nav-link:hover {
+    color: #6366f1;
+  }
+
+  /* Results */
+  .bible-reference {
+    font-weight: 600;
+    color: #6366f1;
+    margin-bottom: 0.25rem;
+  }
+
+  .dark .bible-reference {
+    color: #818cf8;
+  }
+
+  .bible-text {
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .lexicon-results li {
+    margin-bottom: 1rem;
+    padding: 1rem;
+    background: #f9fafb;
+    border-radius: 0.5rem;
+  }
+
+  .dark .lexicon-results li {
+    background: #1f2937;
+  }
+
+  /* Highlighting */
+  mark {
+    background-color: #fef08a;
+    padding: 0.1em;
+    border-radius: 0.2em;
+  }
+
+  .dark mark {
+    background-color: #713f12;
+  }
+
+  /* Search Results */
+  .search-results {
+    @apply space-y-4;
+  }
+
+  .result-item {
+    @apply p-5 bg-[var(--bg-primary)] rounded-lg shadow-sm 
+           border border-[var(--border-primary)] transition-transform
+           hover:-translate-y-0.5;
+  }
+
+  .result-title {
+    @apply font-semibold text-[var(--primary)] mb-2;
+  }
+
+  .result-text {
+    @apply text-[var(--text-secondary)];
+  }
+
+  /* Theme Toggle */
+  .theme-toggle {
+    @apply fixed bottom-4 right-4 p-2 bg-[var(--primary)] text-white 
+           rounded-full shadow-lg hover:opacity-90 transition-opacity;
+  }
+
+  /* sg-mirror */
+  .sg-mirror {
+    @apply p-4 bg-[var(--bg-primary)] border border-[var(--border-primary)] rounded-lg shadow-sm transition-all;
+  }
+
+  .dark .sg-mirror {
+    background: #1f2937;
+    border-color: #374151;
+  }
+
+  /* sg-highlighter */
+  .sg-highlighter {
+    @apply text-[var(--primary)] bg-[var(--highlight)] px-1 rounded-md;
+  }
+
+  .dark .sg-highlighter {
+    background: #f6a21b;
+    color: #ffffff;
+  }
+
+  /* sg-div */
+  .sg-div {
+    @apply p-4 bg-[var(--bg-primary)] rounded-lg border border-[var(--border-primary)] transition-all;
+  }
+
+  .dark .sg-div {
+    background: #2d3748;
+    border-color: #4a5568;
+  }
+
+  /* label */
+  label {
+    @apply text-[var(--text-primary)] font-medium;
+  }
+
+  .dark label {
+    color: #e5e7eb;
+  }
+
+  /* input */
+  input {
+    @apply px-4 py-2 border border-[var(--border-primary)] rounded-lg bg-[var(--bg-primary)] text-[var(--text-primary)] transition-all;
+  }
+
+  .dark input {
+    background-color: #374151;
+    border-color: #4b5563;
+    color: #e5e7eb;
+  }
+}
+
+@layer utilities {
+  /* Custom Utilities */
+  .dark-mode {
+    @apply dark;
+  }
+
+  .light-mode {
+    @apply light;
+  }
+
+  /* Add specific utilities for switching themes, borders, etc. */
+  .transition-colors {
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+}

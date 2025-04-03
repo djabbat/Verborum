@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" class="[scrollbar-gutter:stable]">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="csrf-token" content={get_csrf_token()} />
+    <.live_title default="Bouquet Verborum" suffix=" ~ Knowledge System">
+      {assigns[:page_title]}
+    </.live_title>
+    <link phx-track-static rel="stylesheet" href={~p"/assets/app.css"} />
+    <script defer phx-track-static type="text/javascript" src={~p"/assets/app.js"}>
+    </script>
+  </head>
+  <body class="bg-white dark:bg-gray-900 transition-colors duration-300">
+    <div class="flex justify-end items-center gap-4 pr-4 py-2">
+      <!-- Кнопка переключателя темы -->
+      <button 
+      id="theme-toggle" 
+      class="p-2 rounded-lg bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 transition-colors"
+    >
+      <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707"/>
+      </svg>
+      <svg class="w-6 h-6 text-white hidden dark:block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+      </svg>
+    </button>
+
+    <ul class="relative z-10 flex items-center gap-4 px-4 sm:px-6 lg:px-8 justify-end" style="font-size: 0.9rem;">
+
+      <%= if @current_user do %>
+        <li>
+          {@current_user.email}
+        </li>
+        <li>
+          <.link
+            href={~p"/users/settings"}>
+            Settings
+          </.link>
+        </li>
+        <li>
+          <.link
+            href={~p"/users/log_out"}
+            method="delete">
+            Log out
+          </.link>
+        </li>
+      <% else %>
+        <li>
+          <.link
+            href={~p"/users/register"}>
+            Register
+          </.link>
+        </li>
+        <li>
+          <.link
+            href={~p"/users/log_in"}>
+            Log in
+          </.link>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+{@inner_content}
+  </body>
+</html>
